@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 
 namespace BaseArrays
@@ -22,6 +22,7 @@ namespace BaseArrays
 
         public abstract void Regenerate(bool userGenerated = false);
         public abstract void Print();
+        public abstract void CountAverage();
     }
 
     class ArraySimple : ArrayBase
@@ -58,7 +59,13 @@ namespace BaseArrays
 
                 size = selfArray.Length;
             }
+            
+            CountAverage();
+        }
 
+        public override void CountAverage()
+        {
+            
             decimal summ = 0;
             foreach (int el in selfArray)
             {
@@ -67,7 +74,7 @@ namespace BaseArrays
 
             average = summ / selfArray.Length;
         }
-        
+
         public void BelowHundred()
         {
             int newArraySize = selfArray.Count(el => (el <= 100 && el > 0) || (el >= -100 && el < 0));
@@ -179,8 +186,14 @@ namespace BaseArrays
                     }
                 }
             }
-            
 
+            determinant = GetDeterminant(selfArray);
+            
+            CountAverage();
+        }
+
+        public override void CountAverage()
+        {
             decimal summ = 0;
             foreach (int el in selfArray)
             {
@@ -188,10 +201,8 @@ namespace BaseArrays
             }
 
             average = summ / selfArray.Length;
-
-            determinant = GetDeterminant(selfArray);
         }
-        
+
         private int GetDeterminant(int[,] matr)
         {
             int size = matr.GetLength(0);
@@ -319,7 +330,12 @@ namespace BaseArrays
 
                 selfArray = arr;
             }
+            
+            CountAverage();
+        }
 
+        public override void CountAverage()
+        {
             decimal summ = 0;
             int counter = 0;
             foreach (int[] el in selfArray)
@@ -333,7 +349,7 @@ namespace BaseArrays
 
             average = summ / counter;
         }
-        
+
         public override void Print()
         {
             foreach (var el in selfArray)
