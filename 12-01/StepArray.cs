@@ -80,7 +80,7 @@ namespace Array
             {
                 for (int j = 0; j < selfArray[i].selfArray.Length; j++)
                 {
-                    if (el % 2 == 0)
+                    if (selfArray[i].selfArray[j] % 2 == 0)
                     {
                         selfArray[i].selfArray[j] = i * j;
                     }
