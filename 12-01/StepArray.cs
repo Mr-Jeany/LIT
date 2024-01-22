@@ -83,7 +83,7 @@ namespace Array
                     var el = selfArray[i].selfArray.Length;
                     if (el % 2 == 0)
                     {
-                        el = i * j;
+                        selfArray[i].selfArray[j] = i * j;
                     }
                 }
             }
