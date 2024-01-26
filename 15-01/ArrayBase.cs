@@ -9,5 +9,7 @@ namespace BaseArrays
         public abstract void Regenerate(bool userGenerated = false);
         public abstract void Print();
         public abstract void CountAverage();
+        public abstract void Randomed();
+        public abstract void Usered();
     }
 }
