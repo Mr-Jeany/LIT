@@ -2,7 +2,7 @@ using System;
 
 namespace BaseArrays
 {
-    class ArrayStep : ArrayBase
+    sealed class ArrayStep : ArrayBase
     {
         public ArraySimple[] selfArray;
         private int size;
@@ -24,32 +24,44 @@ namespace BaseArrays
         {
             if (userGenerated)
             {
-                ArraySimple[] arr = new ArraySimple[size];
-
-                for (int i = 0; i < size; i++)
-                {
-                    Console.Write("Size of line: ");
-                    int size = int.Parse(Console.ReadLine());
-                    arr[i] = new ArraySimple(size, 0, 9, true);
-                }
-
-                selfArray = arr;
+                Usered();
             }
             else
             {
-                ArraySimple[] arr = new ArraySimple[size];
-                Random rand = new Random();
-
-                for (int i = 0; i < size; i++)
-                {
-                    arr[i] = new ArraySimple(rand.Next(1, maxLength - 1), 0, 9);
-                }
-
-                selfArray = arr;
+                Randomed();
             }
+                
 
             CountAverage();
         }
+
+        public override void Randomed()
+        {
+            ArraySimple[] arr = new ArraySimple[size];
+            Random rand = new Random();
+
+            for (int i = 0; i < size; i++)
+            {
+                arr[i] = new ArraySimple(rand.Next(1, maxLength - 1), 0, 9);
+            }
+
+            selfArray = arr;
+        }
+
+        public override void Usered()
+        {
+            ArraySimple[] arr = new ArraySimple[size];
+
+            for (int i = 0; i < size; i++)
+            {
+                Console.Write("Size of line: ");
+                int size = int.Parse(Console.ReadLine());
+                arr[i] = new ArraySimple(size, 0, 9, true);
+            }
+
+            selfArray = arr;
+        }
+        
 
         public override void Print()
         {
