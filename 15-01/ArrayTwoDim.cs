@@ -2,7 +2,7 @@ using System;
 
 namespace BaseArrays
 {
-    class ArrayTwoDim : ArrayBase
+    sealed class ArrayTwoDim : ArrayBase
     {
         public int[,] selfArray;
         public int height;
@@ -30,32 +30,42 @@ namespace BaseArrays
 
         public override void Regenerate(bool userGenerated = false)
         {
-            if (!userGenerated)
+            if (userGenerated)
             {
-                selfArray = new int[height, width];
-                Random rand = new Random();
-                for (int i = 0; i < height; i++)
-                {
-                    for (int n = 0; n < width; n++)
-                    {
-                        selfArray[i, n] = rand.Next(min, max + 1);
-                    }
-                }
+                Usered();
             } 
             else
             {
-                selfArray = new int[height, width];
-                for (int i = 0; i < height; i++)
-                {
-                    string[] input = Console.ReadLine().Split();
-                    for (int n = 0; n < width; n++)
-                    {
-                        selfArray[i, n] = int.Parse(input[n]);
-                    }
-                }
+                Randomed();
             }
             
             CountAverage();
+        }
+
+        public override void Randomed()
+        {
+            selfArray = new int[height, width];
+            Random rand = new Random();
+            for (int i = 0; i < height; i++)
+            {
+                for (int n = 0; n < width; n++)
+                {
+                    selfArray[i, n] = rand.Next(min, max + 1);
+                }
+            }
+        }
+
+        public override void Usered()
+        {
+            selfArray = new int[height, width];
+            for (int i = 0; i < height; i++)
+            {
+                string[] input = Console.ReadLine().Split();
+                for (int n = 0; n < width; n++)
+                {
+                    selfArray[i, n] = int.Parse(input[n]);
+                }
+            }
         }
 
         private int GetDeterminant(int[,] matr)
