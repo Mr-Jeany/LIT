@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace BaseArrays
 {
-    class ArraySimple : ArrayBase
+    sealed class ArraySimple : ArrayBase
     {
         public int[] selfArray;
         public int size;
@@ -18,28 +18,38 @@ namespace BaseArrays
         
         public override void Regenerate(bool userGenerated = false)
         {
-            if (!userGenerated)
+            if (userGenerated)
             {
-                selfArray = new int[size];
-                Random rand = new Random();
-                for (int i = 0; i < selfArray.Length; i++)
-                {
-                    selfArray[i] = rand.Next(min, max);
-                }
+                Usered();
             }
             else
             {
-                string[] selfArrayString = Console.ReadLine().Split();
-                selfArray = new int[selfArrayString.Length];
-                for (int i = 0; i < selfArrayString.Length; i++)
-                {
-                    selfArray[i] = int.Parse(selfArrayString[i]);
-                }
-
-                size = selfArray.Length;
+                Randomed();
             }
             
             CountAverage();
+        }
+
+        public override void Randomed()
+        {
+            selfArray = new int[size];
+            Random rand = new Random();
+            for (int i = 0; i < selfArray.Length; i++)
+            {
+                selfArray[i] = rand.Next(min, max);
+            }
+        }
+
+        public override void Usered()
+        {
+            string[] selfArrayString = Console.ReadLine().Split();
+            selfArray = new int[selfArrayString.Length];
+            for (int i = 0; i < selfArrayString.Length; i++)
+            {
+                selfArray[i] = int.Parse(selfArrayString[i]);
+            }
+
+            size = selfArray.Length;
         }
 
         public override void CountAverage()
