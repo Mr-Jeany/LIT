@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace _4_1
 {
@@ -8,12 +8,15 @@ namespace _4_1
         {
             ArraySimple<int> intArray = new ArraySimple<int>();
             intArray.Print();
-            intArray.Add(19);
-            intArray.Print();
+            intArray.Add(5);
             intArray.Remove(2);
-            intArray.Print();
             intArray.Sort();
-            intArray.Print();
+            intArray.Count();
+            intArray.CountWithCondition((x) => x > 6);
+            intArray.CheckIfOneIsTrue((x) => x == 5);
+            intArray.CheckIfAllAreTrue((x) => x < 3);
+            intArray.Contains(10);
+            intArray.MakeForEachElement((x) => Console.Write(x*x + " "));
         }
     }
 }
