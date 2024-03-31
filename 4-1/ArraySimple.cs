@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace _4_1
 {
@@ -100,7 +100,7 @@ namespace _4_1
             short counter = 0;
             foreach (var element in _selfArray)
             {
-                if (condition(element))
+                if (condition(element) && !element.Equals(_emptySlot))
                 {
                     counter++;
                 }
